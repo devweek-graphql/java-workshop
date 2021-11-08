@@ -1,6 +1,6 @@
 package com.dev.week.devweek.commons.enums;
 
-public enum CharacterType {
+public enum CharacterTypeEnum {
     
     HERO("hero"),
     VILLAN("villain"),
@@ -8,7 +8,7 @@ public enum CharacterType {
 
     private String characterType;
 
-    CharacterType(String characterType) {
+    CharacterTypeEnum(String characterType) {
         this.characterType = characterType;
     }
 }

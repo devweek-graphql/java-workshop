@@ -12,8 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.dev.week.devweek.commons.enums.CharacterType;
-import com.dev.week.devweek.commons.enums.CharacterUniverse;
+import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
+import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 
 @Entity
 @Table(name = "CHARACTER")
@@ -25,11 +25,11 @@ public class Character {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "UNIVERSE")
-    private CharacterUniverse universe;
+    private CharacterUniverseEnum universe;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "TYPE")
-    private CharacterType type;
+    private CharacterTypeEnum type;
 
     @OneToMany
     private List<Character> alies;
@@ -52,19 +52,19 @@ public class Character {
         this.name = name;
     }
 
-    public CharacterUniverse getUniverse() {
+    public CharacterUniverseEnum getUniverse() {
         return universe;
     }
 
-    public void setUniverse(CharacterUniverse universe) {
+    public void setUniverse(CharacterUniverseEnum universe) {
         this.universe = universe;
     }
 
-    public CharacterType getType() {
+    public CharacterTypeEnum getType() {
         return type;
     }
 
-    public void setType(CharacterType type) {
+    public void setType(CharacterTypeEnum type) {
         this.type = type;
     }
 
