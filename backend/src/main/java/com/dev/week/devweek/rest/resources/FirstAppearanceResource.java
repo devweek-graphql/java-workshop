@@ -1,7 +1,7 @@
 package com.dev.week.devweek.rest.resources;
 
 import com.dev.week.devweek.commons.model.FirstAppearance;
-import com.dev.week.devweek.rest.services.IFirstAppearanceService;
+import com.dev.week.devweek.commons.services.IFirstAppearanceService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -6,7 +6,9 @@ import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Character;
 import com.dev.week.devweek.commons.services.ICharacterService;
 import com.dev.week.devweek.rest.model.CharacterRequest;
+import com.dev.week.devweek.rest.model.CharacterUpdateRequest;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,33 +31,35 @@ public class CharacterResource {
     }
 
     @GetMapping
-    public List<Character> getAllCaracters (
+    public List<Character> getCharactersWithFilters (
         @RequestParam(name = "universe", required = false) CharacterUniverseEnum universe,
         @RequestParam(name = "sortBy", required = false) String sortBy,
         @RequestParam(name = "order", required = false) String order,
         @RequestParam(name = "limit", required = false) Integer limit,
         @RequestParam(name = "offset", required = false) Integer offset) {
 
-        return null;
+        return this.characterService.getCharactersWithFilters(universe, sortBy, order, limit, offset);
     }
 
     @GetMapping("/{characterId}")
     public Character getCharacterById(@PathVariable String characterId) {
-        return null;
+        return this.characterService.getCharacterById(characterId);
     }
 
     @PostMapping
     public Character addNewCharacter(@RequestBody CharacterRequest bodyRequest) {
-        return null;
+        return this.characterService.addNewCharacter(bodyRequest);
     }
 
     @PutMapping("/{characterId}")
-    public Character updateCharacter(@PathVariable String characterId) {
-        return null;
+    public Character updateCharacter(
+        @PathVariable String characterId, @RequestBody CharacterUpdateRequest updateRequest) {
+        return this.characterService.updateCharacter(characterId, updateRequest);
     }
 
     @DeleteMapping("/{characterId}")
-    public ResponseEntity<Void> deleteCharacter() {
-        return null;
+    public ResponseEntity<Void> deleteCharacter(@PathVariable String characterId) {
+        this.characterService.deleteCharacter(characterId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

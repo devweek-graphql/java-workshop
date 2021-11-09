@@ -1,9 +1,7 @@
 package com.dev.week.devweek.rest.resources;
 
-import javax.websocket.server.PathParam;
-
 import com.dev.week.devweek.commons.model.Ability;
-import com.dev.week.devweek.rest.services.IAbilityService;
+import com.dev.week.devweek.commons.services.IAbilityService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

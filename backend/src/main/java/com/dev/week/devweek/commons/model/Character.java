@@ -42,7 +42,7 @@ public class Character {
     private FirstAppearance firstAppearance;
 
     @OneToMany
-    private List<Ability> habilities;
+    private List<Ability> abilities;
 
     public String getName() {
         return name;
@@ -92,11 +92,11 @@ public class Character {
         this.firstAppearance = firstAppearance;
     }
 
-    public List<Ability> getHabilities() {
-        return habilities;
+    public List<Ability> getAbilities() {
+        return abilities;
     }
 
-    public void setHabilities(List<Ability> habilities) {
-        this.habilities = habilities;
+    public void setAbilities(List<Ability> habilities) {
+        this.abilities = habilities;
     }
 }
