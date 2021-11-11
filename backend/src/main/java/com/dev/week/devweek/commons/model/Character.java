@@ -8,15 +8,19 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 
 @Entity
-@Table(name = "CHARACTER")
+@Table(name = "CHARACTERS")
 public class Character {
     
     @Id
@@ -31,17 +35,32 @@ public class Character {
     @Column(name = "TYPE")
     private CharacterTypeEnum type;
 
-    @OneToMany
-    private List<Character> alies;
+    @ManyToMany
+    @JoinTable(
+        name = "CHARACTER_ALLIES",
+        joinColumns = @JoinColumn(name = "CHARACTER_NAME", referencedColumnName = "NAME"),
+        inverseJoinColumns = @JoinColumn(name = "ALLY_NAME", referencedColumnName = "NAME")  
+    )
+    private List<Character> allies;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+        name = "CHARACTER_TEAMS",
+        joinColumns = @JoinColumn(name = "CHARACTER_NAME", referencedColumnName = "NAME"),
+        inverseJoinColumns = @JoinColumn(name = "TEAM_NAME", referencedColumnName = "NAME")  
+    )
     private List<Team> partOf;
 
     @OneToOne
     @JoinColumn(name = "FIRST_APPEARANCE_ID")
     private FirstAppearance firstAppearance;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+        name = "CHARACTER_ABILITIES",
+        joinColumns = @JoinColumn(name = "CHARACTER_NAME", referencedColumnName = "NAME"),
+        inverseJoinColumns = @JoinColumn(name = "ABILIITY_NAME", referencedColumnName = "NAME")  
+    )
     private List<Ability> abilities;
 
     public String getName() {
@@ -68,12 +87,12 @@ public class Character {
         this.type = type;
     }
 
-    public List<Character> getAlies() {
-        return alies;
+    public List<Character> getAllies() {
+        return allies;
     }
 
-    public void setAlies(List<Character> alies) {
-        this.alies = alies;
+    public void setAllies(List<Character> alies) {
+        this.allies = alies;
     }
 
     public List<Team> getPartOf() {

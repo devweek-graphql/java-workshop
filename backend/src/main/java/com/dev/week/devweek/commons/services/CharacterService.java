@@ -70,8 +70,8 @@ public class CharacterService implements ICharacterService {
             character.setName(request.getName());
             character.setUniverse(request.getUniverse());
             character.setType(request.getType());
-            character.setAlies(alies);
-            character.setPartOf(teamsIsPartOf);
+            character.setAllies(alies);
+            // character.setPartOf(teamsIsPartOf); TODO
             character.setFirstAppearance(firstAppearance);
             character.setAbilities(abilities);
 
@@ -104,12 +104,12 @@ public class CharacterService implements ICharacterService {
                 //     .filter(ability -> !updateRequest.getAbilitiesNamesToDelete().contains(ability.getName()))
                 //     .collect(Collectors.toList());
 
-                aliesToAdd.addAll(character.getAlies());
-                teamsIsPartOfToAdd.addAll(character.getPartOf());
+                aliesToAdd.addAll(character.getAllies());
+                // teamsIsPartOfToAdd.addAll(character.getPartOf()); TODO
                 abilitiesToAdd.addAll(character.getAbilities());
 
-                character.setAlies(aliesToAdd);
-                character.setPartOf(teamsIsPartOfToAdd);
+                character.setAllies(aliesToAdd);
+                // character.setPartOf(teamsIsPartOfToAdd); TODO
                 character.setAbilities(abilitiesToAdd);
                 character.setUniverse(updateRequest.getUniverse());
                 character.setType(updateRequest.getType());
