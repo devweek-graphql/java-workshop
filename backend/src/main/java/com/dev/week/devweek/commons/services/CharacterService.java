@@ -134,5 +134,4 @@ public class CharacterService implements ICharacterService {
             this.characterRepository.deleteById(characterId);
         }
     }
-    
 }
