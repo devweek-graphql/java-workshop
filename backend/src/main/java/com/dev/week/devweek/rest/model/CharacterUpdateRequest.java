@@ -11,13 +11,13 @@ public class CharacterUpdateRequest {
 
     private CharacterTypeEnum type;
 
-    private List<String> aliesIdsToAdd;
+    private List<String> alliesIdsToAdd;
 
     private List<String> partOfIdsToAdd;
 
-    private Integer firstAppearanceId;
+    private String firstAppearanceId;
 
-    private List<String> abilitiesNamesToAdd;
+    private List<String> abilitiesIdsToAdd;
 
     public CharacterUniverseEnum getUniverse() {
         return universe;
@@ -35,12 +35,12 @@ public class CharacterUpdateRequest {
         this.type = type;
     }
 
-    public List<String> getAliesIdsToAdd() {
-        return aliesIdsToAdd;
+    public List<String> getAlliesIdsToAdd() {
+        return alliesIdsToAdd;
     }
 
-    public void setAliesIdsToAdd(List<String> aliesIdsToAdd) {
-        this.aliesIdsToAdd = aliesIdsToAdd;
+    public void setAlliesIdsToAdd(List<String> aliesIdsToAdd) {
+        this.alliesIdsToAdd = aliesIdsToAdd;
     }
 
     public List<String> getPartOfIdsToAdd() {
@@ -51,19 +51,19 @@ public class CharacterUpdateRequest {
         this.partOfIdsToAdd = partOfIdsToAdd;
     }
 
-    public Integer getFirstAppearanceId() {
+    public String getFirstAppearanceId() {
         return firstAppearanceId;
     }
 
-    public void setFirstAppearanceId(Integer firstAppearanceId) {
+    public void setFirstAppearanceId(String firstAppearanceId) {
         this.firstAppearanceId = firstAppearanceId;
     }
 
-    public List<String> getAbilitiesNamesToAdd() {
-        return abilitiesNamesToAdd;
+    public List<String> getAbilitiesIdsToAdd() {
+        return abilitiesIdsToAdd;
     }
 
-    public void setAbilitiesNamesToAdd(List<String> habilitiesNamesToAdd) {
-        this.abilitiesNamesToAdd = habilitiesNamesToAdd;
+    public void setAbilitiesIdsToAdd(List<String> abilitiesIdsToAdd) {
+        this.abilitiesIdsToAdd = abilitiesIdsToAdd;
     }
 }

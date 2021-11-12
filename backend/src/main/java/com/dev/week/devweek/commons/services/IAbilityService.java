@@ -1,9 +1,11 @@
 package com.dev.week.devweek.commons.services;
 
+import java.util.List;
+
 import com.dev.week.devweek.commons.model.Ability;
 
 public interface IAbilityService {
     
-    Ability getAbilityById(String abilityId);
+    List<Ability> getAllAbilities();
 
 }

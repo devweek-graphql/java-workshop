@@ -1,5 +1,7 @@
 package com.dev.week.devweek.commons.services;
 
+import java.util.List;
+
 import com.dev.week.devweek.commons.model.Ability;
 import com.dev.week.devweek.commons.repositories.IAbilityRepository;
 
@@ -15,8 +17,8 @@ public class AbilityService implements IAbilityService {
     }
 
     @Override
-    public Ability getAbilityById(String abilityId) {
-        return this.abilityRepository.findById(abilityId).orElse(null);
+    public List<Ability> getAllAbilities() {
+        return this.abilityRepository.findAll();
     }
     
 }

@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 @Service
@@ -55,23 +56,33 @@ public class CharacterService implements ICharacterService {
 
     @Override
     public Character getCharacterById(String characterId) {
-        return this.characterRepository.findById(characterId).orElse(null);
+        return StringUtils.hasText(characterId) 
+            ? this.characterRepository.findById(characterId).orElse(null)
+            : null;
     }
 
     @Override
     public Character addNewCharacter(CharacterRequest request) {
         if (request != null) {
-            List<Character> alies = this.characterRepository.findAllById(request.getAliesNames());
-            List<Team> teamsIsPartOf = this.teamRepository.findAllById(request.getPartOfIds());
-            FirstAppearance firstAppearance = this.firstAppearanceRepository.findById(request.getFirstAppearanceId()).orElse(null);
-            List<Ability> abilities = this.abilityRepository.findAllById(request.getAbilitiesNames());
+            List<Character> alies = !CollectionUtils.isEmpty(request.getAlliesIds()) 
+                ? this.characterRepository.findAllById(request.getAlliesIds())
+                : null;
+            List<Team> teamsIsPartOf = !CollectionUtils.isEmpty(request.getPartOfIds()) 
+                ? this.teamRepository.findAllById(request.getPartOfIds())
+                : null;
+            FirstAppearance firstAppearance = StringUtils.hasText(request.getFirstAppearanceId())
+                ? this.firstAppearanceRepository.findById(request.getFirstAppearanceId()).orElse(null)
+                : null;
+            List<Ability> abilities = !CollectionUtils.isEmpty(request.getAbilitiesIds()) 
+                ? this.abilityRepository.findAllById(request.getAbilitiesIds())
+                : null;
             
             Character character = new Character();
             character.setName(request.getName());
             character.setUniverse(request.getUniverse());
             character.setType(request.getType());
             character.setAllies(alies);
-            // character.setPartOf(teamsIsPartOf); TODO
+            character.setPartOf(teamsIsPartOf);
             character.setFirstAppearance(firstAppearance);
             character.setAbilities(abilities);
 
@@ -87,34 +98,30 @@ public class CharacterService implements ICharacterService {
         if (updateRequest != null) {
             character = this.characterRepository.findById(characterId).orElse(null);
             if (character != null) {
-                List<Character> aliesToAdd = this.characterRepository.findAllById(updateRequest.getAliesIdsToAdd());
-                List<Team> teamsIsPartOfToAdd = this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd());
-                List<Ability> abilitiesToAdd = this.abilityRepository.findAllById(updateRequest.getAbilitiesNamesToAdd());
-
-                // List<Character> existingAliesFiltered = character.getAlies()
-                //     .stream()
-                //     .filter(alie -> !updateRequest.getAliesIdsToDelete().contains(alie.getName()))
-                //     .collect(Collectors.toList());
-                // List<Team> existingTeamsFiltered = character.getPartOf()
-                //     .stream()
-                //     .filter(team -> !updateRequest.getPartOfIdsDelete().contains(team.getName()))
-                //     .collect(Collectors.toList());
-                // List<Ability> existingAbilitiesFiltered = character.getAbilities()
-                //     .stream()
-                //     .filter(ability -> !updateRequest.getAbilitiesNamesToDelete().contains(ability.getName()))
-                //     .collect(Collectors.toList());
+                List<Character> aliesToAdd = !CollectionUtils.isEmpty(updateRequest.getAlliesIdsToAdd())
+                    ? this.characterRepository.findAllById(updateRequest.getAlliesIdsToAdd())
+                    : null;
+                FirstAppearance firstAppearance = StringUtils.hasText(updateRequest.getFirstAppearanceId())
+                    ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
+                    : null;
+                List<Team> teamsIsPartOfToAdd = !CollectionUtils.isEmpty(updateRequest.getPartOfIdsToAdd())
+                    ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
+                    : null;
+                List<Ability> abilitiesToAdd = !CollectionUtils.isEmpty(updateRequest.getAbilitiesIdsToAdd())
+                    ? this.abilityRepository.findAllById(updateRequest.getAbilitiesIdsToAdd())
+                    : null;
 
                 aliesToAdd.addAll(character.getAllies());
-                // teamsIsPartOfToAdd.addAll(character.getPartOf()); TODO
+                teamsIsPartOfToAdd.addAll(character.getPartOf());
                 abilitiesToAdd.addAll(character.getAbilities());
 
                 character.setAllies(aliesToAdd);
-                // character.setPartOf(teamsIsPartOfToAdd); TODO
+                character.setPartOf(teamsIsPartOfToAdd);
                 character.setAbilities(abilitiesToAdd);
+                character.setFirstAppearance(firstAppearance);
                 character.setUniverse(updateRequest.getUniverse());
                 character.setType(updateRequest.getType());
                 character = this.characterRepository.saveAndFlush(character);
-                
             }
         }
 
@@ -123,7 +130,9 @@ public class CharacterService implements ICharacterService {
 
     @Override
     public void deleteCharacter(String characterId) {
-        this.characterRepository.deleteById(characterId);
+        if (StringUtils.hasText(characterId)) {
+            this.characterRepository.deleteById(characterId);
+        }
     }
     
 }

@@ -1,5 +1,7 @@
 package com.dev.week.devweek.commons.services;
 
+import java.util.List;
+
 import com.dev.week.devweek.commons.model.Team;
 import com.dev.week.devweek.commons.repositories.ITeamRepository;
 
@@ -15,8 +17,8 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public Team getTeamById(String teamId) {
-        return this.teamRepository.findById(teamId).orElse(null);
+    public List<Team> getAllTeams() {
+        return this.teamRepository.findAll();
     }
     
 }

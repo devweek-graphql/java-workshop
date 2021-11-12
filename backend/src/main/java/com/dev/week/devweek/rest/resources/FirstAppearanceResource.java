@@ -1,10 +1,11 @@
 package com.dev.week.devweek.rest.resources;
 
+import java.util.List;
+
 import com.dev.week.devweek.commons.model.FirstAppearance;
 import com.dev.week.devweek.commons.services.IFirstAppearanceService;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +19,8 @@ public class FirstAppearanceResource {
         this.firstAppearanceService = firstAppearanceService;
     }
 
-    @GetMapping("/{firstAppearanceId}")
-    public FirstAppearance getFirstAppearanceById(@PathVariable Integer firstAppearanceId) {
-        return this.firstAppearanceService.getFirstAppearanceById(firstAppearanceId);
+    @GetMapping
+    public List<FirstAppearance> getAllFirstAppearances() {
+        return this.firstAppearanceService.getAllFirstAppearances();
     }
 }

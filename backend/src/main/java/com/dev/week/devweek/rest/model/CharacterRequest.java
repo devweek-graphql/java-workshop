@@ -13,13 +13,13 @@ public class CharacterRequest {
 
     private CharacterTypeEnum type;
 
-    private List<String> aliesNames;
+    private List<String> alliesIds;
 
     private List<String> partOfIds;
 
-    private Integer firstAppearanceId;
+    private String firstAppearanceId;
 
-    private List<String> abilitiesNames;
+    private List<String> abilitiesIds;
 
     public String getName() {
         return name;
@@ -45,12 +45,12 @@ public class CharacterRequest {
         this.type = type;
     }
 
-    public List<String> getAliesNames() {
-        return aliesNames;
+    public List<String> getAlliesIds() {
+        return alliesIds;
     }
 
-    public void setAliesNames(List<String> aliesNames) {
-        this.aliesNames = aliesNames;
+    public void setAlliesIds(List<String> alliesIds) {
+        this.alliesIds = alliesIds;
     }
 
     public List<String> getPartOfIds() {
@@ -61,20 +61,20 @@ public class CharacterRequest {
         this.partOfIds = partOfIds;
     }
 
-    public Integer getFirstAppearanceId() {
+    public String getFirstAppearanceId() {
         return firstAppearanceId;
     }
 
-    public void setFirstAppearanceId(Integer firstAppearanceId) {
+    public void setFirstAppearanceId(String firstAppearanceId) {
         this.firstAppearanceId = firstAppearanceId;
     }
 
-    public List<String> getAbilitiesNames() {
-        return abilitiesNames;
+    public List<String> getAbilitiesIds() {
+        return abilitiesIds;
     }
 
-    public void setAbilitiesNames(List<String> habilitiesNames) {
-        this.abilitiesNames = habilitiesNames;
+    public void setAbilitiesIds(List<String> abilitiesIds) {
+        this.abilitiesIds = abilitiesIds;
     }
 
 

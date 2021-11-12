@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "617fbe92-7048-4e49-bbc4-d8075af2f0ab",
+		"name": "dev week - characters API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "characters",
+			"item": [
+				{
+					"name": "Get characters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7070/characters?universe=&sortBy=&order=&limit=&offset=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7070",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "universe",
+									"value": "",
+									"description": "can be either DC or MARVEL"
+								},
+								{
+									"key": "sortBy",
+									"value": "",
+									"description": "column to sort result"
+								},
+								{
+									"key": "order",
+									"value": "",
+									"description": "can be either ASC or DESC"
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "amount of data to return"
+								},
+								{
+									"key": "offset",
+									"value": "",
+									"description": "page number"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get character by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7070/characters/:characterId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7070",
+							"path": [
+								"characters",
+								":characterId"
+							],
+							"variable": [
+								{
+									"key": "characterId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new character",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"some-new-superhero\",\r\n    \"universe\": \"DC\",\r\n    \"alliesIds\": [\"Superman\"],\r\n    \"partOfIds\": [\"Avengers\"],\r\n    \"firstAppearanceId\": \"The Flash #110\",\r\n    \"abilitiesIds\": [\"Strength\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7070/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7070",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update character",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"universe\": \"DC\",\r\n    \"alliesIdsToAdd\": [],\r\n    \"partOfIdsToAdd\": [\"Avengers\"],\r\n    \"firstAppearanceId\": \"The Flash #110\",\r\n    \"abilitiesIdsToAdd\": [\"Flight\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7070/characters/:characterId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7070",
+							"path": [
+								"characters",
+								":characterId"
+							],
+							"variable": [
+								{
+									"key": "characterId",
+									"value": "some-new-superhero"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete character by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7070/characters/:characterId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7070",
+							"path": [
+								"characters",
+								":characterId"
+							],
+							"variable": [
+								{
+									"key": "characterId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get all abilities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7070/abilities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7070",
+					"path": [
+						"abilities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all first appearances",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7070/firstAppearances",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7070",
+					"path": [
+						"firstAppearances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all teams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7070/teams",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7070",
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
