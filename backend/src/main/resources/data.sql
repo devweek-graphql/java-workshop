@@ -11,47 +11,47 @@ INSERT INTO ABILITIES (NAME, DESCRIPTION) VALUES ('Telepathy', 'Ability to commu
 INSERT INTO ABILITIES (NAME, DESCRIPTION) VALUES ('Invisibility', 'Ability to became invisible');
 
 -- load teams
--- DC
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Birds of Prey', 'A femme force to be reckoned with');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Doom Patrol', 'Group of super-powered misfits');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Green Lantern Corps', 'Intergalactic police force');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Justice League', 'Earth''s premiere team of champions');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Suicide Squad', 'A group of super-villains who have license to take drastic action');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Teen Titans', 'Group of teenage superheroes');
--- Marvel
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Avengers', 'Group of extraordinary individuals');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('X-Force', 'A mutant strike team that would take a more proactive stance against threats to mutantkind');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('X-Men', 'Mutants gathered by Charles Xavier');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Fantastic Four', 'They might be super heroes, but they are a family first');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Guardians of the Galaxy', 'A group of intergalactic outlaws, turned unlikely saviors of the galaxy');
 INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Inhumans', 'The Inhumans are a race of people who were created as a result of a Kree science experiment');
+-- teams for Wonder Woman
+INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Amazons of Themyscira', 'Race of immortal warrior women that live on the mystically hidden island of Themyscira');
+INSERT INTO TEAMS (NAME, DESCRIPTION) VALUES ('Black Lantern Corps', 'The group is composed of deceased fictional characters in zombie form that seek to eliminate all life from the DC Universe');
 
 -- load first appearances
-
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Journey Into Mistery #83', '1962'); -- thor
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Tales of Suspense #39', '1963'); -- iron man
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Batman: The Animated Series', '1992'); -- harley quinn
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('My Greatest Adventure #80', '1963'); -- negative man, robotman, elasticgirl
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('All-American Comics #16', '1940'); -- green lantern
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Action Comics #1', '1938'); -- superman
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('All Star Comics #8', '1941'); -- wonder woman
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('DC Comics Presents #26', '1980'); -- Cyborg
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('The Flash #1', '1940'); -- flash
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Legends #1', '1986'); -- amanda waller
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Strange Adventures #187', '1966'); -- Enchantress (suicide squad)
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Detective Comics #38', '1940'); -- robin/nightwing (teen titans)
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('The Flash #110', '1959'); -- Kid flash (teen titans)
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Adventure Comics #269', '1960'); -- aqualad (teen titans)
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Wonder Woman #23', '1947'); -- wonder girl (teen titans)
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Uncanny X-Men #201', '1986'); -- cable (xforce)
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('X-Men #1', '1963'); -- charles xavier
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Uncanny X-Men #1', '1963'); -- ciclops, jean grey
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Fantastic Four #1', '1961'); -- mr fantastico, invisible girl
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Fantastic Four #5', '1962'); -- doctor doom
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Strange Tales #180', '1975'); -- gamora
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Avengers #257', '1985'); -- nebula
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Fantastic Four #45', '1965'); -- black bolt
-INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Fantastic Four #36', '1965'); -- medusa
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Journey Into Mistery #83', '1962');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Tales of Suspense #39', '1963');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Batman: The Animated Series', '1992');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('My Greatest Adventure #80', '1963');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('All-American Comics #16', '1940');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Action Comics #1', '1938');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('All Star Comics #8', '1941');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('DC Comics Presents #26', '1980');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('The Flash #1', '1940');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Legends #1', '1986');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Strange Adventures #187', '1966');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Detective Comics #38', '1940');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('The Flash #110', '1959');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Adventure Comics #269', '1960');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Wonder Woman #23', '1947');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Uncanny X-Men #201', '1986');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('X-Men #1', '1963');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Uncanny X-Men #1', '1963');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Fantastic Four #1', '1961');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Fantastic Four #5', '1962');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Strange Tales #180', '1975');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Avengers #257', '1985');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Fantastic Four #45', '1965');
+INSERT INTO FIRST_APPEARANCES (COMIC_NAME, YEAR) VALUES ('Fantastic Four #36', '1965');
 
 -- load characters
 INSERT INTO CHARACTERS (NAME, TYPE, UNIVERSE, FIRST_APPEARANCE_ID, CHARACTER_AVATAR) VALUES ('Thor', 'HERO', 'MARVEL', 'Journey Into Mistery #83', './assets/avatars/thor.jpg');
@@ -125,6 +125,10 @@ INSERT INTO CHARACTER_ALLIES (CHARACTER_NAME, ALLY_NAME) VALUES ('Harley Quinn',
 INSERT INTO CHARACTER_ALLIES (CHARACTER_NAME, ALLY_NAME) VALUES ('Gamora', 'Nebula');
 INSERT INTO CHARACTER_ALLIES (CHARACTER_NAME, ALLY_NAME) VALUES ('Invisible Woman', 'Mr Fantastic');
 INSERT INTO CHARACTER_ALLIES (CHARACTER_NAME, ALLY_NAME) VALUES ('Jean Grey', 'Cyclops');
+-- recursive allies
+INSERT INTO CHARACTER_ALLIES (CHARACTER_NAME, ALLY_NAME) VALUES ('Robin', 'Kid Flash');
+INSERT INTO CHARACTER_ALLIES (CHARACTER_NAME, ALLY_NAME) VALUES ('Kid Flash', 'Wonder Girl');
+INSERT INTO CHARACTER_ALLIES (CHARACTER_NAME, ALLY_NAME) VALUES ('Wonder Girl', 'Robin');
 
 
 -- load characters teams
@@ -136,6 +140,8 @@ INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Elasti-Girl', '
 INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Green Lantern', 'Green Lantern Corps');
 INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Superman', 'Justice League');
 INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Wonder Woman', 'Justice League');
+INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Wonder Woman', 'Amazons of Themyscira');
+INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Wonder Woman', 'Black Lantern Corps');
 INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Cyborg', 'Justice League');
 INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Flash', 'Justice League');
 INSERT INTO CHARACTER_TEAMS (CHARACTER_NAME, TEAM_NAME) VALUES ('Enchantress', 'Suicide Squad');
