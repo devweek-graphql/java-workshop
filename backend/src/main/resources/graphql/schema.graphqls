@@ -1,0 +1,8 @@
+type Ability {
+    name: ID
+    description: String
+}
+
+type Query {
+    getAllAbilities: [Ability]
+}
