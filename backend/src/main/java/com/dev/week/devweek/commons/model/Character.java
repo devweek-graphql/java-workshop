@@ -24,6 +24,9 @@ public class Character {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "CHARACTER_AVATAR")
+    private String characterAvatar;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "UNIVERSE")
     private CharacterUniverseEnum universe;
@@ -67,6 +70,10 @@ public class Character {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getCharacterAvatar() { return characterAvatar; }
+
+    public void setCharacterAvatar(String characterAvatar) { this.characterAvatar = characterAvatar; }
 
     public CharacterUniverseEnum getUniverse() {
         return universe;
