@@ -1,8 +1,51 @@
+enum CharacterUniverse {
+    DC
+    MARVEL
+}
+
+enum CharacterType {
+    HERO
+    ANTIHERO
+    VILLAIN
+}
+
 type Ability {
     name: ID
     description: String
 }
 
+type Team {
+    name: ID
+    description: String
+}
+
+type FirstAppearance {
+    comicName: ID
+    year: String
+}
+
+type Character {
+    name: ID
+    characterAvatar: String
+    universe: CharacterUniverse!
+    type: CharacterType!
+    firstAppearance: FirstAppearance
+    allies: [Character]
+    partOf: [Team]
+    abilities: [Ability]
+}
+
 type Query {
     getAllAbilities: [Ability]
+    getAllFirstAppearances: [FirstAppearance]
+    getAllTeams: [Team]
+    
+    getCharacters: [Character]
+    getCharacterById: Character
+}
+
+type Mutation {
+    addNewCharacter: Character
+    updateCharacter: Character
+    deleteCharacter: Character
 }
