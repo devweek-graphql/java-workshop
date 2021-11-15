@@ -18,5 +18,5 @@ public interface ICharacterService {
 
     Character updateCharacter(String characterId, CharacterUpdateRequest updateRequest);
 
-    void deleteCharacter(String characterId);
+    String deleteCharacter(String characterId);
 }

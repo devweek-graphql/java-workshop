@@ -129,9 +129,12 @@ public class CharacterService implements ICharacterService {
     }
 
     @Override
-    public void deleteCharacter(String characterId) {
+    public String deleteCharacter(String characterId) {
         if (StringUtils.hasText(characterId)) {
             this.characterRepository.deleteById(characterId);
+            return characterId;
         }
+
+        return null;
     }
 }

@@ -58,8 +58,7 @@ public class CharacterResource {
     }
 
     @DeleteMapping("/{characterId}")
-    public ResponseEntity<Void> deleteCharacter(@PathVariable String characterId) {
-        this.characterService.deleteCharacter(characterId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    public String deleteCharacter(@PathVariable String characterId) {
+        return this.characterService.deleteCharacter(characterId);
     }
 }

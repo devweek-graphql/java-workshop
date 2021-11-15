@@ -13,22 +13,12 @@ import org.springframework.stereotype.Component;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 
 @Component
-public class QueryResolver implements GraphQLQueryResolver  {
+public class AbilitiesQueryResolver implements GraphQLQueryResolver  {
     
     private final IAbilityService abilityService;
-    private final ICharacterService characterService;
-    private final IFirstAppearanceService firstAppearanceService;
-    private final ITeamService teamService;
     
-    public QueryResolver(
-            IAbilityService abilityService, 
-            ICharacterService characterService,
-            IFirstAppearanceService firstAppearanceService, 
-            ITeamService teamService) {
+    public AbilitiesQueryResolver(IAbilityService abilityService) {
         this.abilityService = abilityService;
-        this.characterService = characterService;
-        this.firstAppearanceService = firstAppearanceService;
-        this.teamService = teamService;
     }
 
     public List<Ability> getAllAbilities() {
