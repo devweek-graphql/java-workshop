@@ -1,4 +1,4 @@
-package com.dev.week.devweek.rest.model;
+package com.dev.week.devweek.graphql.models;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.IAddCharacter;
 
-public class CharacterRequest implements IAddCharacter {
+public class AddCharacterPayload implements IAddCharacter {
     
     private String name;
 
@@ -78,5 +78,5 @@ public class CharacterRequest implements IAddCharacter {
         this.abilitiesIds = abilitiesIds;
     }
 
-
+    
 }

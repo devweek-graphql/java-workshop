@@ -72,7 +72,7 @@ type Character {
     type: CharacterType!
     firstAppearance: FirstAppearance
     allies: [Character]
-    partOf: [Team]
+    partOf(first: Int): [Team]
     abilities: [Ability]
 }
 

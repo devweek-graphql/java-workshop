@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -43,7 +44,7 @@ public class Character {
     )
     private List<Character> allies;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "CHARACTER_TEAMS",
         joinColumns = @JoinColumn(name = "CHARACTER_NAME", referencedColumnName = "NAME"),

@@ -6,6 +6,8 @@ import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Ability;
 import com.dev.week.devweek.commons.model.Character;
 import com.dev.week.devweek.commons.model.FirstAppearance;
+import com.dev.week.devweek.commons.model.IAddCharacter;
+import com.dev.week.devweek.commons.model.IUpdateCharacter;
 import com.dev.week.devweek.commons.model.Team;
 import com.dev.week.devweek.commons.repositories.IAbilityRepository;
 import com.dev.week.devweek.commons.repositories.ICharacterRepository;
@@ -14,6 +16,7 @@ import com.dev.week.devweek.commons.repositories.ITeamRepository;
 import com.dev.week.devweek.rest.model.CharacterRequest;
 import com.dev.week.devweek.rest.model.CharacterUpdateRequest;
 
+import org.apache.coyote.http11.InputFilter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -62,7 +65,7 @@ public class CharacterService implements ICharacterService {
     }
 
     @Override
-    public Character addNewCharacter(CharacterRequest request) {
+    public Character addNewCharacter(IAddCharacter request) {
         if (request != null) {
             List<Character> alies = !CollectionUtils.isEmpty(request.getAlliesIds()) 
                 ? this.characterRepository.findAllById(request.getAlliesIds())
@@ -93,7 +96,7 @@ public class CharacterService implements ICharacterService {
     }
 
     @Override
-    public Character updateCharacter(String characterId, CharacterUpdateRequest updateRequest) {
+    public Character updateCharacter(String characterId, IUpdateCharacter updateRequest) {
         Character character = null; 
         if (updateRequest != null) {
             character = this.characterRepository.findById(characterId).orElse(null);

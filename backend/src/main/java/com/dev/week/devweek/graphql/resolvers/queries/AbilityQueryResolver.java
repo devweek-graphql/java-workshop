@@ -1,23 +1,20 @@
-package com.dev.week.devweek.graphql.resolvers;
+package com.dev.week.devweek.graphql.resolvers.queries;
 
 import java.util.List;
 
 import com.dev.week.devweek.commons.model.Ability;
 import com.dev.week.devweek.commons.services.IAbilityService;
-import com.dev.week.devweek.commons.services.ICharacterService;
-import com.dev.week.devweek.commons.services.IFirstAppearanceService;
-import com.dev.week.devweek.commons.services.ITeamService;
 
 import org.springframework.stereotype.Component;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
 
 @Component
-public class AbilitiesQueryResolver implements GraphQLQueryResolver  {
+public class AbilityQueryResolver implements GraphQLQueryResolver  {
     
     private final IAbilityService abilityService;
     
-    public AbilitiesQueryResolver(IAbilityService abilityService) {
+    public AbilityQueryResolver(IAbilityService abilityService) {
         this.abilityService = abilityService;
     }
 

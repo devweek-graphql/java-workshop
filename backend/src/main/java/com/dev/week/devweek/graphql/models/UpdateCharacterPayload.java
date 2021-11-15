@@ -1,4 +1,4 @@
-package com.dev.week.devweek.rest.model;
+package com.dev.week.devweek.graphql.models;
 
 import java.util.List;
 
@@ -6,8 +6,7 @@ import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.IUpdateCharacter;
 
-public class CharacterUpdateRequest implements IUpdateCharacter {
-    
+public class UpdateCharacterPayload implements IUpdateCharacter {
     private CharacterUniverseEnum universe;
 
     private CharacterTypeEnum type;
@@ -40,8 +39,8 @@ public class CharacterUpdateRequest implements IUpdateCharacter {
         return alliesIdsToAdd;
     }
 
-    public void setAlliesIdsToAdd(List<String> aliesIdsToAdd) {
-        this.alliesIdsToAdd = aliesIdsToAdd;
+    public void setAlliesIdsToAdd(List<String> alliesIdsToAdd) {
+        this.alliesIdsToAdd = alliesIdsToAdd;
     }
 
     public List<String> getPartOfIdsToAdd() {
