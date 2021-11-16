@@ -83,7 +83,7 @@ type Query {
     getAllFirstAppearances: [FirstAppearance]
     getAllTeams: [Team]
     
-    getCharacters: [Character]
+    getCharacters(filters: GetCharactersFilters): [Character]
     getCharacterById(id: ID!): Character
 }
 

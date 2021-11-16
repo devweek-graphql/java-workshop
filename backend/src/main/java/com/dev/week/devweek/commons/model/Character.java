@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "CHARACTERS")
@@ -44,7 +46,7 @@ public class Character {
     )
     private List<Character> allies;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
         name = "CHARACTER_TEAMS",
         joinColumns = @JoinColumn(name = "CHARACTER_NAME", referencedColumnName = "NAME"),

@@ -13,10 +13,7 @@ import com.dev.week.devweek.commons.repositories.IAbilityRepository;
 import com.dev.week.devweek.commons.repositories.ICharacterRepository;
 import com.dev.week.devweek.commons.repositories.IFirstAppearanceRepository;
 import com.dev.week.devweek.commons.repositories.ITeamRepository;
-import com.dev.week.devweek.rest.model.CharacterRequest;
-import com.dev.week.devweek.rest.model.CharacterUpdateRequest;
 
-import org.apache.coyote.http11.InputFilter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
