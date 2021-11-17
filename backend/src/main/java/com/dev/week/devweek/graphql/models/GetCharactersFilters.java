@@ -10,6 +10,10 @@ public class GetCharactersFilters {
 
     private SortEnum order;
 
+    private Integer limit;
+
+    private Integer offset;
+
     public CharacterUniverseEnum getUniverse() {
         return universe;
     }
@@ -32,5 +36,21 @@ public class GetCharactersFilters {
 
     public void setOrder(SortEnum order) {
         this.order = order;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getOffset() {
+        return offset;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
     }
 }

@@ -39,7 +39,8 @@ input GetCharactersFilters {
     universe: CharacterUniverse
     sortBy: String
     order: SortEnum
-    # pagination here?
+    start: Int
+    offset: Int
 }
 
 # teams

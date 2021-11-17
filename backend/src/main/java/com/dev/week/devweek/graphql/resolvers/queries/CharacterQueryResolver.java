@@ -26,7 +26,7 @@ public class CharacterQueryResolver implements GraphQLQueryResolver {
                 order = filters.getOrder().toString();
             }
             return this.characterService.getCharactersWithFilters(
-                filters.getUniverse(), filters.getSortBy(), order, null, null);
+                filters.getUniverse(), filters.getSortBy(), order, filters.getLimit(), filters.getOffset());
         }
 
         return this.characterService.getCharactersWithFilters(null, null, null, null, null);
