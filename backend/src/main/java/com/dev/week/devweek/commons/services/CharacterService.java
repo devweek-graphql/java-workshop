@@ -1,7 +1,9 @@
 package com.dev.week.devweek.commons.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Ability;
 import com.dev.week.devweek.commons.model.Character;
@@ -85,6 +87,7 @@ public class CharacterService implements ICharacterService {
             character.setPartOf(teamsIsPartOf);
             character.setFirstAppearance(firstAppearance);
             character.setAbilities(abilities);
+            character.setCharacterAvatar("./assets/avatars/default_avatar.png");
 
             return this.characterRepository.saveAndFlush(character);
         }
@@ -100,16 +103,17 @@ public class CharacterService implements ICharacterService {
             if (character != null) {
                 List<Character> aliesToAdd = !CollectionUtils.isEmpty(updateRequest.getAlliesIdsToAdd())
                     ? this.characterRepository.findAllById(updateRequest.getAlliesIdsToAdd())
-                    : null;
+                    : new ArrayList<>();
                 FirstAppearance firstAppearance = StringUtils.hasText(updateRequest.getFirstAppearanceId())
                     ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
                     : null;
                 List<Team> teamsIsPartOfToAdd = !CollectionUtils.isEmpty(updateRequest.getPartOfIdsToAdd())
                     ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
-                    : null;
+                    : new ArrayList<>();
                 List<Ability> abilitiesToAdd = !CollectionUtils.isEmpty(updateRequest.getAbilitiesIdsToAdd())
                     ? this.abilityRepository.findAllById(updateRequest.getAbilitiesIdsToAdd())
-                    : null;
+                    : new ArrayList<>();
+                CharacterTypeEnum type = updateRequest.getType() != null ?  updateRequest.getType() : character.getType();
 
                 aliesToAdd.addAll(character.getAllies());
                 teamsIsPartOfToAdd.addAll(character.getPartOf());

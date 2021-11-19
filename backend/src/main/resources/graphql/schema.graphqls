@@ -20,6 +20,7 @@ enum SortEnum {
 # characters
 input AddCharacterPayload {
     name: ID!
+    type: CharacterType!
     universe: CharacterUniverse!
     alliesIds: [String!]
     partOfIds: [String!]
@@ -29,6 +30,7 @@ input AddCharacterPayload {
 
 input UpdateCharacterPayload {
     universe: CharacterUniverse
+    type: CharacterType
     alliesIdsToAdd: [String!]
     partOfIdsToAdd: [String!]
     fistAppearanceId: String
@@ -40,6 +42,7 @@ input GetCharactersFilters {
     sortBy: String
     order: SortEnum
     start: Int
+    limit: Int
     offset: Int
 }
 
