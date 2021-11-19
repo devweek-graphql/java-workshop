@@ -13,15 +13,4 @@ public class DevweekApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DevweekApplication.class, args);
 	}
-
-	/**
-	 * This bean is added so GraphQL knows
-	 * how to deal with lazy loadings during
-	 * execution (character's collections)
-	 * 
-	*/
-	@Bean
-	public Filter OpenFilter() {
-		return new OpenEntityManagerInViewFilter();
-	}
 }

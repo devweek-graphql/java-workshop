@@ -1,54 +1,3 @@
-## enums
-enum CharacterUniverse {
-    DC
-    MARVEL
-}
-
-enum CharacterType {
-    HERO
-    ANTIHERO
-    VILLAIN
-}
-
-enum SortEnum {
-    ASC
-    DESC
-}
-
-## input types
-
-# characters
-input AddCharacterPayload {
-    name: ID!
-    universe: CharacterUniverse!
-    alliesIds: [String!]
-    partOfIds: [String!]
-    firstAppearanceId: String
-    abilitiesIds: [String!]
-}
-
-input UpdateCharacterPayload {
-    universe: CharacterUniverse
-    alliesIdsToAdd: [String!]
-    partOfIdsToAdd: [String!]
-    fistAppearanceId: String
-    abilitiesIdsToAdd: [String!]
-}
-
-input GetCharactersFilters {
-    universe: CharacterUniverse
-    sortBy: String
-    order: SortEnum
-    start: Int
-    offset: Int
-}
-
-# teams
-input AddTeamPayload {
-    name: ID!
-    description: String
-}
-
 ## return types
 
 type Ability {
@@ -56,46 +5,8 @@ type Ability {
     description: String
 }
 
-type Team {
-    name: ID
-    description: String
-}
-
-type FirstAppearance {
-    comicName: ID
-    year: String
-}
-
-type Character {
-    name: ID
-    characterAvatar: String
-    universe: CharacterUniverse!
-    type: CharacterType!
-    firstAppearance: FirstAppearance
-    allies: [Character]
-    partOf(first: Int): [Team]
-    abilities: [Ability]
-}
-
 ## queries
 
 type Query {
     getAllAbilities: [Ability]
-    getAllFirstAppearances: [FirstAppearance]
-    getAllTeams: [Team]
-    
-    getCharacters(filters: GetCharactersFilters): [Character]
-    getCharacterById(id: ID!): Character
-}
-
-## mutations
-
-type Mutation {
-    # characters
-    addNewCharacter(payload: AddCharacterPayload): Character
-    updateCharacter(id: ID!, payload: UpdateCharacterPayload): Character
-    deleteCharacter(id: ID!): String
-
-    # teams
-    addNewTeam(payload: AddTeamPayload): Team
 }
