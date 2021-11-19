@@ -4,10 +4,8 @@ import java.util.List;
 
 import com.dev.week.devweek.commons.model.Team;
 import com.dev.week.devweek.commons.repositories.ITeamRepository;
-import com.dev.week.devweek.graphql.models.AddTeamPayload;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 @Service
 public class TeamService implements ITeamService {
@@ -21,18 +19,6 @@ public class TeamService implements ITeamService {
     @Override
     public List<Team> getAllTeams() {
         return this.teamRepository.findAll();
-    }
-
-    @Override
-    public Team addNewTeam(AddTeamPayload payload) {
-        if (StringUtils.hasText(payload.getName())) {
-            Team team = new Team();
-            team.setName(payload.getName());
-            team.setDescription(payload.getDescription());
-            return this.teamRepository.saveAndFlush(team);
-        }
-
-        return null;
     }
     
 }
