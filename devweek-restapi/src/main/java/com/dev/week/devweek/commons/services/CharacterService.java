@@ -8,13 +8,13 @@ import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Ability;
 import com.dev.week.devweek.commons.model.Character;
 import com.dev.week.devweek.commons.model.FirstAppearance;
-import com.dev.week.devweek.commons.model.IAddCharacter;
-import com.dev.week.devweek.commons.model.IUpdateCharacter;
 import com.dev.week.devweek.commons.model.Team;
 import com.dev.week.devweek.commons.repositories.IAbilityRepository;
 import com.dev.week.devweek.commons.repositories.ICharacterRepository;
 import com.dev.week.devweek.commons.repositories.IFirstAppearanceRepository;
 import com.dev.week.devweek.commons.repositories.ITeamRepository;
+import com.dev.week.devweek.rest.model.CharacterRequest;
+import com.dev.week.devweek.rest.model.CharacterUpdateRequest;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +33,7 @@ public class CharacterService implements ICharacterService {
     private final IAbilityRepository abilityRepository;
 
     private final String DEFAULT_SORT_COLUMN = "name";
+    private final String DEFAULT_ASSET_PATH = "./assets/avatars/default_avatar.png";
 
     public CharacterService(ICharacterRepository characterRepository,
         ITeamRepository teamRepository, 
@@ -64,7 +65,7 @@ public class CharacterService implements ICharacterService {
     }
 
     @Override
-    public Character addNewCharacter(IAddCharacter request) {
+    public Character addNewCharacter(CharacterRequest request) {
         if (request != null) {
             List<Character> alies = !CollectionUtils.isEmpty(request.getAlliesIds()) 
                 ? this.characterRepository.findAllById(request.getAlliesIds())
@@ -87,7 +88,7 @@ public class CharacterService implements ICharacterService {
             character.setPartOf(teamsIsPartOf);
             character.setFirstAppearance(firstAppearance);
             character.setAbilities(abilities);
-            character.setCharacterAvatar("./assets/avatars/default_avatar.png");
+            character.setCharacterAvatar(DEFAULT_ASSET_PATH);
 
             return this.characterRepository.saveAndFlush(character);
         }
@@ -96,7 +97,7 @@ public class CharacterService implements ICharacterService {
     }
 
     @Override
-    public Character updateCharacter(String characterId, IUpdateCharacter updateRequest) {
+    public Character updateCharacter(String characterId, CharacterUpdateRequest updateRequest) {
         Character character = null; 
         if (updateRequest != null) {
             character = this.characterRepository.findById(characterId).orElse(null);
@@ -124,7 +125,7 @@ public class CharacterService implements ICharacterService {
                 character.setAbilities(abilitiesToAdd);
                 character.setFirstAppearance(firstAppearance);
                 character.setUniverse(updateRequest.getUniverse());
-                character.setType(updateRequest.getType());
+                character.setType(type);
                 character = this.characterRepository.saveAndFlush(character);
             }
         }
