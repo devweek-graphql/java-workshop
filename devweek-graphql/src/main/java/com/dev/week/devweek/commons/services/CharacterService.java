@@ -1,13 +1,13 @@
 package com.dev.week.devweek.commons.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Ability;
 import com.dev.week.devweek.commons.model.Character;
 import com.dev.week.devweek.commons.model.FirstAppearance;
-import com.dev.week.devweek.commons.model.IAddCharacter;
-import com.dev.week.devweek.commons.model.IUpdateCharacter;
 import com.dev.week.devweek.commons.model.Team;
 import com.dev.week.devweek.commons.repositories.IAbilityRepository;
 import com.dev.week.devweek.commons.repositories.ICharacterRepository;
@@ -31,6 +31,7 @@ public class CharacterService implements ICharacterService {
     private final IAbilityRepository abilityRepository;
 
     private final String DEFAULT_SORT_COLUMN = "name";
+    private final String DEFAULT_ASSET_PATH = "./assets/avatars/default_avatar.png";
 
     public CharacterService(ICharacterRepository characterRepository,
         ITeamRepository teamRepository, 
@@ -61,72 +62,74 @@ public class CharacterService implements ICharacterService {
             : null;
     }
 
-    @Override
-    public Character addNewCharacter(IAddCharacter request) {
-        if (request != null) {
-            List<Character> alies = !CollectionUtils.isEmpty(request.getAlliesIds()) 
-                ? this.characterRepository.findAllById(request.getAlliesIds())
-                : null;
-            List<Team> teamsIsPartOf = !CollectionUtils.isEmpty(request.getPartOfIds()) 
-                ? this.teamRepository.findAllById(request.getPartOfIds())
-                : null;
-            FirstAppearance firstAppearance = StringUtils.hasText(request.getFirstAppearanceId())
-                ? this.firstAppearanceRepository.findById(request.getFirstAppearanceId()).orElse(null)
-                : null;
-            List<Ability> abilities = !CollectionUtils.isEmpty(request.getAbilitiesIds()) 
-                ? this.abilityRepository.findAllById(request.getAbilitiesIds())
-                : null;
+    // @Override
+    // public Character addNewCharacter(AddCharacterPayload request) {
+    //     if (request != null) {
+    //         List<Character> alies = !CollectionUtils.isEmpty(request.getAlliesIds()) 
+    //             ? this.characterRepository.findAllById(request.getAlliesIds())
+    //             : null;
+    //         List<Team> teamsIsPartOf = !CollectionUtils.isEmpty(request.getPartOfIds()) 
+    //             ? this.teamRepository.findAllById(request.getPartOfIds())
+    //             : null;
+    //         FirstAppearance firstAppearance = StringUtils.hasText(request.getFirstAppearanceId())
+    //             ? this.firstAppearanceRepository.findById(request.getFirstAppearanceId()).orElse(null)
+    //             : null;
+    //         List<Ability> abilities = !CollectionUtils.isEmpty(request.getAbilitiesIds()) 
+    //             ? this.abilityRepository.findAllById(request.getAbilitiesIds())
+    //             : null;
             
-            Character character = new Character();
-            character.setName(request.getName());
-            character.setUniverse(request.getUniverse());
-            character.setType(request.getType());
-            character.setAllies(alies);
-            character.setPartOf(teamsIsPartOf);
-            character.setFirstAppearance(firstAppearance);
-            character.setAbilities(abilities);
+    //         Character character = new Character();
+    //         character.setName(request.getName());
+    //         character.setUniverse(request.getUniverse());
+    //         character.setType(request.getType());
+    //         character.setAllies(alies);
+    //         character.setPartOf(teamsIsPartOf);
+    //         character.setFirstAppearance(firstAppearance);
+    //         character.setAbilities(abilities);
+    //         character.setCharacterAvatar(DEFAULT_ASSET_PATH);
 
-            return this.characterRepository.saveAndFlush(character);
-        }
+    //         return this.characterRepository.saveAndFlush(character);
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    @Override
-    public Character updateCharacter(String characterId, IUpdateCharacter updateRequest) {
-        Character character = null; 
-        if (updateRequest != null) {
-            character = this.characterRepository.findById(characterId).orElse(null);
-            if (character != null) {
-                List<Character> aliesToAdd = !CollectionUtils.isEmpty(updateRequest.getAlliesIdsToAdd())
-                    ? this.characterRepository.findAllById(updateRequest.getAlliesIdsToAdd())
-                    : null;
-                FirstAppearance firstAppearance = StringUtils.hasText(updateRequest.getFirstAppearanceId())
-                    ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
-                    : null;
-                List<Team> teamsIsPartOfToAdd = !CollectionUtils.isEmpty(updateRequest.getPartOfIdsToAdd())
-                    ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
-                    : null;
-                List<Ability> abilitiesToAdd = !CollectionUtils.isEmpty(updateRequest.getAbilitiesIdsToAdd())
-                    ? this.abilityRepository.findAllById(updateRequest.getAbilitiesIdsToAdd())
-                    : null;
+    // @Override
+    // public Character updateCharacter(String characterId, CharacterUpdatePayload updateRequest) {
+    //     Character character = null; 
+    //     if (updateRequest != null) {
+    //         character = this.characterRepository.findById(characterId).orElse(null);
+    //         if (character != null) {
+    //             List<Character> aliesToAdd = !CollectionUtils.isEmpty(updateRequest.getAlliesIdsToAdd())
+    //                 ? this.characterRepository.findAllById(updateRequest.getAlliesIdsToAdd())
+    //                 : new ArrayList<>();
+    //             FirstAppearance firstAppearance = StringUtils.hasText(updateRequest.getFirstAppearanceId())
+    //                 ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
+    //                 : null;
+    //             List<Team> teamsIsPartOfToAdd = !CollectionUtils.isEmpty(updateRequest.getPartOfIdsToAdd())
+    //                 ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
+    //                 : new ArrayList<>();
+    //             List<Ability> abilitiesToAdd = !CollectionUtils.isEmpty(updateRequest.getAbilitiesIdsToAdd())
+    //                 ? this.abilityRepository.findAllById(updateRequest.getAbilitiesIdsToAdd())
+    //                 : new ArrayList<>();
+    //             CharacterTypeEnum type = updateRequest.getType() != null ?  updateRequest.getType() : character.getType();
 
-                aliesToAdd.addAll(character.getAllies());
-                teamsIsPartOfToAdd.addAll(character.getPartOf());
-                abilitiesToAdd.addAll(character.getAbilities());
+    //             aliesToAdd.addAll(character.getAllies());
+    //             teamsIsPartOfToAdd.addAll(character.getPartOf());
+    //             abilitiesToAdd.addAll(character.getAbilities());
 
-                character.setAllies(aliesToAdd);
-                character.setPartOf(teamsIsPartOfToAdd);
-                character.setAbilities(abilitiesToAdd);
-                character.setFirstAppearance(firstAppearance);
-                character.setUniverse(updateRequest.getUniverse());
-                character.setType(updateRequest.getType());
-                character = this.characterRepository.saveAndFlush(character);
-            }
-        }
+    //             character.setAllies(aliesToAdd);
+    //             character.setPartOf(teamsIsPartOfToAdd);
+    //             character.setAbilities(abilitiesToAdd);
+    //             character.setFirstAppearance(firstAppearance);
+    //             character.setUniverse(updateRequest.getUniverse());
+    //             character.setType(type);
+    //             character = this.characterRepository.saveAndFlush(character);
+    //         }
+    //     }
 
-        return character;
-    }
+    //     return character;
+    // }
 
     @Override
     public String deleteCharacter(String characterId) {
