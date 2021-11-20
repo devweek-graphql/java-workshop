@@ -59,7 +59,7 @@ type Ability {
 }
 
 type Team {
-    name: ID
+    name: ID!
     description: String
 }
 
