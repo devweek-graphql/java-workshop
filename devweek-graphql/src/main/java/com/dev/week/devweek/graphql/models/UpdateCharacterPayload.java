@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
-import com.dev.week.devweek.commons.model.IUpdateCharacter;
 
-public class UpdateCharacterPayload implements IUpdateCharacter {
+public class UpdateCharacterPayload {
+    
     private CharacterUniverseEnum universe;
 
     private CharacterTypeEnum type;

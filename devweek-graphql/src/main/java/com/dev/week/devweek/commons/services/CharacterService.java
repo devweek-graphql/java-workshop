@@ -1,18 +1,20 @@
 package com.dev.week.devweek.commons.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Ability;
 import com.dev.week.devweek.commons.model.Character;
 import com.dev.week.devweek.commons.model.FirstAppearance;
-import com.dev.week.devweek.commons.model.IAddCharacter;
-import com.dev.week.devweek.commons.model.IUpdateCharacter;
 import com.dev.week.devweek.commons.model.Team;
 import com.dev.week.devweek.commons.repositories.IAbilityRepository;
 import com.dev.week.devweek.commons.repositories.ICharacterRepository;
 import com.dev.week.devweek.commons.repositories.IFirstAppearanceRepository;
 import com.dev.week.devweek.commons.repositories.ITeamRepository;
+import com.dev.week.devweek.graphql.models.AddCharacterPayload;
+import com.dev.week.devweek.graphql.models.UpdateCharacterPayload;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +33,8 @@ public class CharacterService implements ICharacterService {
     private final IAbilityRepository abilityRepository;
 
     private final String DEFAULT_SORT_COLUMN = "name";
+    private final String DEFAULT_ASSET_PATH = "./assets/avatars/default_avatar.png";
+    
 
     public CharacterService(ICharacterRepository characterRepository,
         ITeamRepository teamRepository, 
@@ -62,7 +66,7 @@ public class CharacterService implements ICharacterService {
     }
 
     @Override
-    public Character addNewCharacter(IAddCharacter request) {
+    public Character addNewCharacter(AddCharacterPayload request) {
         if (request != null) {
             List<Character> alies = !CollectionUtils.isEmpty(request.getAlliesIds()) 
                 ? this.characterRepository.findAllById(request.getAlliesIds())
@@ -85,6 +89,7 @@ public class CharacterService implements ICharacterService {
             character.setPartOf(teamsIsPartOf);
             character.setFirstAppearance(firstAppearance);
             character.setAbilities(abilities);
+            character.setCharacterAvatar(DEFAULT_ASSET_PATH);
 
             return this.characterRepository.saveAndFlush(character);
         }
@@ -93,23 +98,24 @@ public class CharacterService implements ICharacterService {
     }
 
     @Override
-    public Character updateCharacter(String characterId, IUpdateCharacter updateRequest) {
+    public Character updateCharacter(String characterId, UpdateCharacterPayload updateRequest) {
         Character character = null; 
         if (updateRequest != null) {
             character = this.characterRepository.findById(characterId).orElse(null);
             if (character != null) {
                 List<Character> aliesToAdd = !CollectionUtils.isEmpty(updateRequest.getAlliesIdsToAdd())
                     ? this.characterRepository.findAllById(updateRequest.getAlliesIdsToAdd())
-                    : null;
+                    : new ArrayList<>();
                 FirstAppearance firstAppearance = StringUtils.hasText(updateRequest.getFirstAppearanceId())
                     ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
                     : null;
                 List<Team> teamsIsPartOfToAdd = !CollectionUtils.isEmpty(updateRequest.getPartOfIdsToAdd())
                     ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
-                    : null;
+                    : new ArrayList<>();
                 List<Ability> abilitiesToAdd = !CollectionUtils.isEmpty(updateRequest.getAbilitiesIdsToAdd())
                     ? this.abilityRepository.findAllById(updateRequest.getAbilitiesIdsToAdd())
-                    : null;
+                    : new ArrayList<>();
+                CharacterTypeEnum type = updateRequest.getType() != null ?  updateRequest.getType() : character.getType();
 
                 aliesToAdd.addAll(character.getAllies());
                 teamsIsPartOfToAdd.addAll(character.getPartOf());
@@ -120,7 +126,7 @@ public class CharacterService implements ICharacterService {
                 character.setAbilities(abilitiesToAdd);
                 character.setFirstAppearance(firstAppearance);
                 character.setUniverse(updateRequest.getUniverse());
-                character.setType(updateRequest.getType());
+                character.setType(type);
                 character = this.characterRepository.saveAndFlush(character);
             }
         }

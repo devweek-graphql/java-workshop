@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Character;
-import com.dev.week.devweek.commons.model.IAddCharacter;
-import com.dev.week.devweek.commons.model.IUpdateCharacter;
+import com.dev.week.devweek.graphql.models.AddCharacterPayload;
+import com.dev.week.devweek.graphql.models.UpdateCharacterPayload;
 
 public interface ICharacterService {
     
@@ -14,9 +14,9 @@ public interface ICharacterService {
 
     Character getCharacterById(String characterId);
 
-    Character  addNewCharacter(IAddCharacter request);
+    Character  addNewCharacter(AddCharacterPayload request);
 
-    Character updateCharacter(String characterId, IUpdateCharacter updateRequest);
+    Character updateCharacter(String characterId, UpdateCharacterPayload updateRequest);
 
     String deleteCharacter(String characterId);
 }
