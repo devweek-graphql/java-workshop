@@ -4,9 +4,8 @@ import java.util.List;
 
 import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
-import com.dev.week.devweek.commons.model.IAddCharacter;
 
-public class CharacterRequest implements IAddCharacter {
+public class CharacterRequest {
     
     private String name;
 
