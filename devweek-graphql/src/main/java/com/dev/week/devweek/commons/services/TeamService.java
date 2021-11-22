@@ -27,7 +27,7 @@ public class TeamService implements ITeamService {
         Team team = new Team();
         team.setName(payload.getName());
         team.setDescription(payload.getDescription());
-        return this.teamRepository.save(team);
+        return this.teamRepository.saveAndFlush(team);
     }
     
 }
