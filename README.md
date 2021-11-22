@@ -4,6 +4,8 @@ The current project is developed in Java using Spring, and aims to create a Grap
 
 The data to use is related to DC and Marvel characters (a very small subset) and the database schema is as follows (all attributes are strings):
 
+**NOTE**: To correctly run this project, **first** run the REST API one bacause that's the one that creates all the necessary data. The GraphQL project connects to the H2 database created by the first one.
+
 <p align="center">
     <img src="./images/db-tables.png">
 </p>
