@@ -1,8 +1,5 @@
 package com.dev.week.devweek.commons.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Ability;
@@ -15,7 +12,6 @@ import com.dev.week.devweek.commons.repositories.IFirstAppearanceRepository;
 import com.dev.week.devweek.commons.repositories.ITeamRepository;
 import com.dev.week.devweek.rest.model.CharacterRequest;
 import com.dev.week.devweek.rest.model.CharacterUpdateRequest;
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -23,6 +19,9 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CharacterService implements ICharacterService {
@@ -107,7 +106,10 @@ public class CharacterService implements ICharacterService {
                     : new ArrayList<>();
                 FirstAppearance firstAppearance = StringUtils.hasText(updateRequest.getFirstAppearanceId())
                     ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
-                    : null;
+                    : character.getFirstAppearance();
+                CharacterUniverseEnum universe = updateRequest.getUniverse() != null
+                    ? updateRequest.getUniverse()
+                    : character.getUniverse();
                 List<Team> teamsIsPartOfToAdd = !CollectionUtils.isEmpty(updateRequest.getPartOfIdsToAdd())
                     ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
                     : new ArrayList<>();
@@ -124,7 +126,7 @@ public class CharacterService implements ICharacterService {
                 character.setPartOf(teamsIsPartOfToAdd);
                 character.setAbilities(abilitiesToAdd);
                 character.setFirstAppearance(firstAppearance);
-                character.setUniverse(updateRequest.getUniverse());
+                character.setUniverse(universe);
                 character.setType(type);
                 character = this.characterRepository.saveAndFlush(character);
             }
