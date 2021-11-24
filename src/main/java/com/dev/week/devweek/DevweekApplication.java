@@ -21,7 +21,7 @@ public class DevweekApplication {
 	 * 
 	*/
 	@Bean
-	public Filter OpenFilter() {
+	public Filter openFilter() {
 		return new OpenEntityManagerInViewFilter();
 	}
 }
