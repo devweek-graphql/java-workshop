@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dev.week</groupId>
-	<artifactId>devweek-rest</artifactId>
+	<artifactId>java-workshop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>devweek-rest</name>
-	<description>Project with Rest API</description>
+	<name>java-workshop</name>
+	<description>Project to work with rest and graphql APIs</description>
 	<properties>
 		<java.version>8</java.version>
 		<graphql-java.version>7.1.0</graphql-java.version>
@@ -35,26 +35,28 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- In-memory SQL database-->
+		<!-- In-memory SQL database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Spring dependency that creates GraphQL Servlet and exposes the /graphql endpoint -->
 		<dependency>
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-spring-boot-starter</artifactId>
             <version>${graphql-java.version}</version>
         </dependency>
 
-		<!-- Playground client-->
+		<!-- Playground client -->
         <dependency>
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>playground-spring-boot-starter</artifactId>
             <version>${graphql-java.version}</version>
         </dependency>
 		
+		<!-- GraphQL tools -->
 		<dependency>
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-java-tools</artifactId>
