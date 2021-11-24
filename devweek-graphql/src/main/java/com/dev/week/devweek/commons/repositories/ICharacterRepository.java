@@ -15,4 +15,6 @@ public interface ICharacterRepository extends JpaRepository<Character, String> {
         nativeQuery = true
     )
     Page<Character> getCharactersByUniverse(String universe, Pageable pageable);
+
+
 }

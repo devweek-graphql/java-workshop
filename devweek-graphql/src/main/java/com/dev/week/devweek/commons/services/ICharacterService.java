@@ -1,6 +1,8 @@
 package com.dev.week.devweek.commons.services;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
 import com.dev.week.devweek.commons.model.Character;
@@ -19,4 +21,6 @@ public interface ICharacterService {
     Character updateCharacter(String characterId, UpdateCharacterPayload updateRequest);
 
     String deleteCharacter(String characterId);
+
+    Map<String, List<Character>> getCharactersFor(Set<String> characterNames);
 }

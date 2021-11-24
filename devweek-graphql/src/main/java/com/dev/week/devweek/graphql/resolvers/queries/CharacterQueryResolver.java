@@ -6,6 +6,7 @@ import com.dev.week.devweek.commons.model.Character;
 import com.dev.week.devweek.commons.services.ICharacterService;
 import com.dev.week.devweek.graphql.models.GetCharactersFilters;
 
+import graphql.schema.DataFetchingEnvironment;
 import org.springframework.stereotype.Component;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;

@@ -57,3 +57,8 @@ The REST API was just created to be a basis for the GraphQL API. In this way, **
 `main` contains all the basics to start the workshop
 
 `graphql-full-solution` contains the full solution to the workshop
+
+# Useful links to understand DataLoader
+`GraphQL Java DataLoader:` https://github.com/graphql-java/java-dataloader
+`Mapped Batch DataLoader:` https://github.com/graphql-java/java-dataloader#returning-a-map-of-results-from-your-batch-loader
+`GraphQL DataLoader from facebook:` https://github.com/graphql/dataloader

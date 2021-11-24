@@ -1,7 +1,10 @@
 package com.dev.week.devweek.commons.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.dev.week.devweek.commons.enums.CharacterTypeEnum;
 import com.dev.week.devweek.commons.enums.CharacterUniverseEnum;
@@ -34,10 +37,10 @@ public class CharacterService implements ICharacterService {
 
     private final String DEFAULT_SORT_COLUMN = "name";
     private final String DEFAULT_ASSET_PATH = "./assets/avatars/default_avatar.png";
-    
+
 
     public CharacterService(ICharacterRepository characterRepository,
-        ITeamRepository teamRepository, 
+        ITeamRepository teamRepository,
         IFirstAppearanceRepository firstAppearanceRepository,
         IAbilityRepository abilityRepository) {
         this.characterRepository = characterRepository;
@@ -139,5 +142,19 @@ public class CharacterService implements ICharacterService {
         }
 
         return null;
+    }
+
+    @Override
+    public Map<String, List<Character>> getCharactersFor(Set<String> characterNames) {
+
+        Map<String, List<Character>> mapCharacterAllies = new HashMap<>();
+
+        this.characterRepository.findAllById(characterNames).stream().forEach(character -> {
+            if (!mapCharacterAllies.containsKey(character.getName())) {
+                mapCharacterAllies.put(character.getName(), character.getAllies());
+            }
+        });
+
+        return mapCharacterAllies;
     }
 }
