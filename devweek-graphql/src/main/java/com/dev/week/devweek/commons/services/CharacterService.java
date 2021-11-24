@@ -108,7 +108,7 @@ public class CharacterService implements ICharacterService {
                     : new ArrayList<>();
                 FirstAppearance firstAppearance = StringUtils.hasText(updateRequest.getFirstAppearanceId())
                     ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
-                    : null;
+                    : character.getFirstAppearance();
                 List<Team> teamsIsPartOfToAdd = !CollectionUtils.isEmpty(updateRequest.getPartOfIdsToAdd())
                     ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
                     : new ArrayList<>();
@@ -116,16 +116,13 @@ public class CharacterService implements ICharacterService {
                     ? this.abilityRepository.findAllById(updateRequest.getAbilitiesIdsToAdd())
                     : new ArrayList<>();
                 CharacterTypeEnum type = updateRequest.getType() != null ?  updateRequest.getType() : character.getType();
-
-                aliesToAdd.addAll(character.getAllies());
-                teamsIsPartOfToAdd.addAll(character.getPartOf());
-                abilitiesToAdd.addAll(character.getAbilities());
+                CharacterUniverseEnum universe = updateRequest.getUniverse() != null ?  updateRequest.getUniverse() : character.getUniverse();
 
                 character.setAllies(aliesToAdd);
                 character.setPartOf(teamsIsPartOfToAdd);
                 character.setAbilities(abilitiesToAdd);
                 character.setFirstAppearance(firstAppearance);
-                character.setUniverse(updateRequest.getUniverse());
+                character.setUniverse(universe);
                 character.setType(type);
                 character = this.characterRepository.saveAndFlush(character);
             }

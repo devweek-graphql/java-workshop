@@ -102,25 +102,19 @@ public class CharacterService implements ICharacterService {
             character = this.characterRepository.findById(characterId).orElse(null);
             if (character != null) {
                 List<Character> aliesToAdd = !CollectionUtils.isEmpty(updateRequest.getAlliesIdsToAdd())
-                    ? this.characterRepository.findAllById(updateRequest.getAlliesIdsToAdd())
-                    : new ArrayList<>();
+                        ? this.characterRepository.findAllById(updateRequest.getAlliesIdsToAdd())
+                        : new ArrayList<>();
                 FirstAppearance firstAppearance = StringUtils.hasText(updateRequest.getFirstAppearanceId())
-                    ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
-                    : character.getFirstAppearance();
-                CharacterUniverseEnum universe = updateRequest.getUniverse() != null
-                    ? updateRequest.getUniverse()
-                    : character.getUniverse();
+                        ? this.firstAppearanceRepository.findById(updateRequest.getFirstAppearanceId()).orElse(null)
+                        : character.getFirstAppearance();
                 List<Team> teamsIsPartOfToAdd = !CollectionUtils.isEmpty(updateRequest.getPartOfIdsToAdd())
-                    ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
-                    : new ArrayList<>();
+                        ? this.teamRepository.findAllById(updateRequest.getPartOfIdsToAdd())
+                        : new ArrayList<>();
                 List<Ability> abilitiesToAdd = !CollectionUtils.isEmpty(updateRequest.getAbilitiesIdsToAdd())
-                    ? this.abilityRepository.findAllById(updateRequest.getAbilitiesIdsToAdd())
-                    : new ArrayList<>();
+                        ? this.abilityRepository.findAllById(updateRequest.getAbilitiesIdsToAdd())
+                        : new ArrayList<>();
                 CharacterTypeEnum type = updateRequest.getType() != null ?  updateRequest.getType() : character.getType();
-
-                aliesToAdd.addAll(character.getAllies());
-                teamsIsPartOfToAdd.addAll(character.getPartOf());
-                abilitiesToAdd.addAll(character.getAbilities());
+                CharacterUniverseEnum universe = updateRequest.getUniverse() != null ?  updateRequest.getUniverse() : character.getUniverse();
 
                 character.setAllies(aliesToAdd);
                 character.setPartOf(teamsIsPartOfToAdd);

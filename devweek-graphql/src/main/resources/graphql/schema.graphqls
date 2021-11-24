@@ -33,7 +33,7 @@ input UpdateCharacterPayload {
     universe: CharacterUniverse
     alliesIdsToAdd: [String!]
     partOfIdsToAdd: [String!]
-    fistAppearanceId: String
+    firstAppearanceId: String
     abilitiesIdsToAdd: [String!]
 }
 
